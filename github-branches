@@ -1,0 +1,40 @@
+Task 9: GitHub Branches - Branch Names and Status
+
+Command and terminal output displaying the branch names and their status in the repository:
+
+---
+
+user@ubuntu:~/mcino-Introduction-to-Git-and-GitHub$ git branch -a
+* main
+  bug-fix-typo
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/bug-fix-typo
+  remotes/origin/main
+
+user@ubuntu:~/mcino-Introduction-to-Git-and-GitHub$ git branch -vv
+* main         f17c760 [origin/main] Merge pull request #1 from NguyenQS504092s/bug-fix-typo
+  bug-fix-typo 5980da5 [origin/bug-fix-typo] Fix typo in README - update copyright notice
+
+user@ubuntu:~/mcino-Introduction-to-Git-and-GitHub$ git branch -a --sort=-committerdate
+* main
+  bug-fix-typo
+  remotes/origin/bug-fix-typo
+  remotes/origin/main
+  remotes/origin/HEAD -> origin/main
+
+user@ubuntu:~/mcino-Introduction-to-Git-and-GitHub$ curl -s https://api.github.com/repos/NguyenQS504092s/mcino-Introduction-to-Git-and-GitHub/branches | python3 -c "
+import sys, json
+branches = json.load(sys.stdin)
+for b in branches:
+    print('Branch:', b['name'], '| Protected:', b['protected'], '| Latest Commit SHA:', b['commit']['sha'][:7])
+"
+Branch: bug-fix-typo | Protected: False | Latest Commit SHA: 5980da5
+Branch: main | Protected: False | Latest Commit SHA: f17c760
+
+---
+
+Evidence: The terminal output shows two branches in the repository:
+1. 'main' - the default branch, at commit f17c760 (Merge pull request #1), tracking origin/main
+2. 'bug-fix-typo' - the feature branch, at commit 5980da5 (Fix typo in README), tracking origin/bug-fix-typo
+
+Both branches are shown with their tracking status via `git branch -vv` and verified via the GitHub API. Neither branch is protected (Protected: False).

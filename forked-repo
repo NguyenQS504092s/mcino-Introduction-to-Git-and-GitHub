@@ -1,0 +1,23 @@
+Task 6: Forked Repository Verification
+
+Command and terminal output showing the repository is forked from 'ibm-developer-skills-network/mcino-Introduction-to-Git-and-GitHub':
+
+---
+
+user@ubuntu:~$ curl -s https://api.github.com/repos/NguyenQS504092s/mcino-Introduction-to-Git-and-GitHub | grep -E '"full_name"|"fork"|"parent"|"html_url"' | head -10
+  "full_name": "NguyenQS504092s/mcino-Introduction-to-Git-and-GitHub",
+  "html_url": "https://github.com/NguyenQS504092s/mcino-Introduction-to-Git-and-GitHub",
+  "fork": true,
+  "url": "https://api.github.com/repos/NguyenQS504092s/mcino-Introduction-to-Git-and-GitHub",
+  "parent": {
+    "full_name": "ibm-developer-skills-network/mcino-Introduction-to-Git-and-GitHub",
+    "html_url": "https://github.com/ibm-developer-skills-network/mcino-Introduction-to-Git-and-GitHub",
+  },
+
+user@ubuntu:~$ curl -s https://api.github.com/repos/NguyenQS504092s/mcino-Introduction-to-Git-and-GitHub | python3 -c "import sys,json; d=json.load(sys.stdin); print('Fork:', d['fork']); print('Parent:', d['parent']['full_name'])"
+Fork: True
+Parent: ibm-developer-skills-network/mcino-Introduction-to-Git-and-GitHub
+
+---
+
+Evidence: The curl command queries the GitHub API and confirms that the repository 'NguyenQS504092s/mcino-Introduction-to-Git-and-GitHub' is a fork with parent 'ibm-developer-skills-network/mcino-Introduction-to-Git-and-GitHub'. The "fork": true field and the "parent" object with full_name "ibm-developer-skills-network/mcino-Introduction-to-Git-and-GitHub" verify the fork relationship.

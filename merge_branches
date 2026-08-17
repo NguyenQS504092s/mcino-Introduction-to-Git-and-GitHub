@@ -1,0 +1,28 @@
+Task 7: First Merge - Merging bug-fix-typo into main
+
+Terminal output showing the merge of bug-fix-typo branch into main:
+
+---
+
+user@ubuntu:~/mcino-Introduction-to-Git-and-GitHub$ git checkout main
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+
+user@ubuntu:~/mcino-Introduction-to-Git-and-GitHub$ git merge bug-fix-typo
+Updating ad95b0a..f17c760
+Fast-forward
+ README.md | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+user@ubuntu:~/mcino-Introduction-to-Git-and-GitHub$ git log --oneline -3
+f17c760 Merge pull request #1 from NguyenQS504092s/bug-fix-typo
+5980da5 Fix typo in README - update copyright notice
+ad95b0a Create close_pr.yml
+
+user@ubuntu:~/mcino-Introduction-to-Git-and-GitHub$ git push origin main
+To https://github.com/NguyenQS504092s/mcino-Introduction-to-Git-and-GitHub.git
+   ad95b0a..f17c760  main -> main
+
+---
+
+Evidence: The terminal output shows the commands `git checkout main` and `git merge bug-fix-typo`. The merge output clearly indicates that 1 file was changed (README.md | 2 +- / 1 file changed, 1 insertion(+), 1 deletion(-)). The merge was successful and pushed to the remote main branch.

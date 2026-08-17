@@ -1,0 +1,50 @@
+Task 8: Bug Fix Revert - Pull Request Verification
+
+Command and terminal output verifying the pull request and showing the forked repository:
+
+---
+
+user@ubuntu:~$ curl -s https://api.github.com/repos/NguyenQS504092s/mcino-Introduction-to-Git-and-GitHub/pulls/1 | python3 -c "
+import sys, json
+pr = json.load(sys.stdin)
+print('PR Number:', pr['number'])
+print('PR Title:', pr['title'])
+print('PR State:', pr['state'])
+print('PR Merged:', pr['merged'])
+print('Head Repo:', pr['head']['repo']['full_name'])
+print('Head Ref:', pr['head']['ref'])
+print('Base Ref:', pr['base']['ref'])
+print('HTML URL:', pr['html_url'])
+print('Merge Commit SHA:', pr['merge_commit_sha'])
+"
+PR Number: 1
+PR Title: Fix typo in README - update copyright notice
+PR State: closed
+PR Merged: True
+Head Repo: NguyenQS504092s/mcino-Introduction-to-Git-and-GitHub
+Head Ref: bug-fix-typo
+Base Ref: main
+HTML URL: https://github.com/NguyenQS504092s/mcino-Introduction-to-Git-and-GitHub/pull/1
+Merge Commit SHA: f17c7605cdf0ea29967a1ed2216b062e7ff78bc5
+
+user@ubuntu:~$ curl -s https://api.github.com/repos/NguyenQS504092s/mcino-Introduction-to-Git-and-GitHub | python3 -c "
+import sys, json
+repo = json.load(sys.stdin)
+print('Repository:', repo['full_name'])
+print('Fork:', repo['fork'])
+print('Parent:', repo['parent']['full_name'])
+print('Parent URL:', repo['parent']['html_url'])
+"
+Repository: NguyenQS504092s/mcino-Introduction-to-Git-and-GitHub
+Fork: True
+Parent: ibm-developer-skills-network/mcino-Introduction-to-Git-and-GitHub
+Parent URL: https://github.com/ibm-developer-skills-network/mcino-Introduction-to-Git-and-GitHub
+
+---
+
+Evidence: The curl command queries the GitHub API to verify pull request #1. The output confirms:
+1. PR #1 "Fix typo in README - update copyright notice" was merged (Merged: True)
+2. The PR was created from the forked repository 'NguyenQS504092s/mcino-Introduction-to-Git-and-GitHub'
+3. The head branch is 'bug-fix-typo' merged into base branch 'main'
+4. The repository is confirmed as a fork of 'ibm-developer-skills-network/mcino-Introduction-to-Git-and-GitHub'
+5. The merge commit SHA is f17c7605cdf0ea29967a1ed2216b062e7ff78bc5
